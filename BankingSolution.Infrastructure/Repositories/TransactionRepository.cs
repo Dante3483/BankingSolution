@@ -23,11 +23,12 @@ namespace BankingSolution.Infrastructure.Repositories
         public async Task DeleteTransactionAsync(Guid id)
         {
             var transaction = await _dbContext.Transactions.FindAsync(id);
-            if (transaction is not null)
+            if (transaction is null)
             {
-                _dbContext.Transactions.Remove(transaction);
-                await _dbContext.SaveChangesAsync();
+                return;
             }
+            _dbContext.Transactions.Remove(transaction);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Transaction>> GetAllTransactionsAsync()
@@ -38,16 +39,6 @@ namespace BankingSolution.Infrastructure.Repositories
         public async Task<Transaction?> GetTransactionByIdAsync(Guid id)
         {
             return await _dbContext.Transactions.FindAsync(id);
-        }
-
-        public async Task UpdateTransactionAsync(Transaction transaction)
-        {
-            var transactionToUpdate = await _dbContext.Transactions.FindAsync(transaction.Id);
-            if (transactionToUpdate is not null)
-            {
-                _dbContext.Transactions.Update(transaction);
-                await _dbContext.SaveChangesAsync();
-            }
         }
     }
 }

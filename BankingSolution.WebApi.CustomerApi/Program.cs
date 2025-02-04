@@ -6,7 +6,9 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddBankingDbContext("Data Source=../Bank.db");
+builder.Services.AddBankingDbContext(
+    $"Data Source={Path.Combine("..", "BankingSolution.Infrastructure", "Bank.db")}"
+);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>

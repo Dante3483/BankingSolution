@@ -23,11 +23,12 @@ namespace BankingSolution.Infrastructure.Repositories
         public async Task DeleteAccountAsync(Guid id)
         {
             var account = await _dbContext.Accounts.FindAsync(id);
-            if (account is not null)
+            if (account is null)
             {
-                _dbContext.Accounts.Remove(account);
-                await _dbContext.SaveChangesAsync();
+                return;
             }
+            _dbContext.Accounts.Remove(account);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<Account?> GetAccountByIdAsync(Guid id)
@@ -38,16 +39,6 @@ namespace BankingSolution.Infrastructure.Repositories
         public async Task<IEnumerable<Account>> GetAllAccountsAsync()
         {
             return await _dbContext.Accounts.ToListAsync();
-        }
-
-        public async Task UpdateAccountAsync(Account account)
-        {
-            var accountToUpdate = await _dbContext.Accounts.FindAsync(account.Id);
-            if (accountToUpdate is not null)
-            {
-                _dbContext.Accounts.Update(account);
-                await _dbContext.SaveChangesAsync();
-            }
         }
     }
 }

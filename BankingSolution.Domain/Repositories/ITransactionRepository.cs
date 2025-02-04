@@ -7,7 +7,6 @@ namespace BankingSolution.Domain.Repositories
         Task<Transaction?> GetTransactionByIdAsync(Guid id);
         Task<IEnumerable<Transaction>> GetAllTransactionsAsync();
         Task AddTransactionAsync(Transaction transaction);
-        Task UpdateTransactionAsync(Transaction transaction);
         Task DeleteTransactionAsync(Guid id);
     }
 }

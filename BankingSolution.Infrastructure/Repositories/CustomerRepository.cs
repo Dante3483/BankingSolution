@@ -23,11 +23,12 @@ namespace BankingSolution.Infrastructure.Repositories
         public async Task DeleteCustomerAsync(Guid customerId)
         {
             var customer = await _dbContext.Customers.FindAsync(customerId);
-            if (customer is not null)
+            if (customer is null)
             {
-                _dbContext.Customers.Remove(customer);
-                await _dbContext.SaveChangesAsync();
+                return;
             }
+            _dbContext.Customers.Remove(customer);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Customer>> GetAllCustomersAsync()
@@ -38,16 +39,6 @@ namespace BankingSolution.Infrastructure.Repositories
         public async Task<Customer?> GetCustomerByIdAsync(Guid customerId)
         {
             return await _dbContext.Customers.FindAsync(customerId);
-        }
-
-        public async Task UpdateCustomerAsync(Customer customer)
-        {
-            var customerToUpdate = await _dbContext.Customers.FindAsync(customer.Id);
-            if (customerToUpdate is not null)
-            {
-                _dbContext.Customers.Update(customer);
-                await _dbContext.SaveChangesAsync();
-            }
         }
     }
 }

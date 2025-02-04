@@ -7,7 +7,6 @@ namespace BankingSolution.Domain.Repositories
         Task<Customer?> GetCustomerByIdAsync(Guid customerId);
         Task<IEnumerable<Customer>> GetAllCustomersAsync();
         Task AddCustomerAsync(Customer customer);
-        Task UpdateCustomerAsync(Customer customer);
         Task DeleteCustomerAsync(Guid customerId);
     }
 }

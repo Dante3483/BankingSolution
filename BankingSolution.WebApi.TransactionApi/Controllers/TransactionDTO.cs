@@ -1,15 +1,11 @@
-using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using BankingSolution.Domain.Entities;
 using BankingSolution.Domain.Enums;
 
-namespace BankingSolution.Domain.Entities
+namespace BankingSolution.WebApi.TransactionApi.Controllers
 {
-    public class Transaction
+    public class TransactionDTO
     {
-        [Key]
-        public Guid Id { get; set; } = Guid.NewGuid();
-
         [Required]
         [EnumDataType(typeof(TransactionType))]
         public TransactionType TransactionType { get; set; } = TransactionType.None;
@@ -28,12 +24,19 @@ namespace BankingSolution.Domain.Entities
         [Required]
         public Guid AccountId { get; set; }
 
-        public Guid? DestinationAccountId { get; set; }
+        public Guid? DestinationAccountId { get; set; } = null;
 
-        [ForeignKey(nameof(AccountId))]
-        public virtual Account? Account { get; set; }
-
-        [ForeignKey(nameof(DestinationAccountId))]
-        public virtual Account? DestinationAccount { get; set; }
+        public Transaction ToTransaction()
+        {
+            return new Transaction
+            {
+                TransactionType = TransactionType,
+                Amount = Amount,
+                TransactionDate = TransactionDate,
+                TransactionStatus = TransactionStatus,
+                AccountId = AccountId,
+                DestinationAccountId = DestinationAccountId,
+            };
+        }
     }
 }

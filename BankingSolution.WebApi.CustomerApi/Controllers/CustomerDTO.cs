@@ -1,13 +1,10 @@
-using System;
 using System.ComponentModel.DataAnnotations;
+using BankingSolution.Domain.Entities;
 
-namespace BankingSolution.Domain.Entities
+namespace BankingSolution.WebApi.CustomerApi.Controllers
 {
-    public class Customer
+    public class CustomerDTO
     {
-        [Key]
-        public Guid Id { get; set; } = Guid.NewGuid();
-
         [Required]
         [MaxLength(50)]
         public string FirstName { get; set; } = string.Empty;
@@ -32,5 +29,18 @@ namespace BankingSolution.Domain.Entities
 
         [Required]
         public DateTime DateOfBirth { get; set; }
+
+        public Customer ToCustomer()
+        {
+            return new Customer
+            {
+                FirstName = FirstName,
+                LastName = LastName,
+                Email = Email,
+                Address = Address,
+                PhoneNumber = PhoneNumber,
+                DateOfBirth = DateOfBirth,
+            };
+        }
     }
 }
