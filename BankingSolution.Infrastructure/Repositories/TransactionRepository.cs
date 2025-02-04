@@ -25,7 +25,7 @@ namespace BankingSolution.Infrastructure.Repositories
             var transaction = await _dbContext.Transactions.FindAsync(id);
             if (transaction is null)
             {
-                return;
+                throw new InvalidOperationException("Transaction not found");
             }
             _dbContext.Transactions.Remove(transaction);
             await _dbContext.SaveChangesAsync();

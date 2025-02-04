@@ -24,10 +24,11 @@ namespace BankingSolution.WebApi.TransactionApi.Controllers
         [DefaultValue(null)]
         public Guid? DestinationAccountId { get; set; }
 
-        public Transaction ToTransaction()
+        public Transaction ToTransaction(TransactionType transactionType = TransactionType.None)
         {
             return new Transaction
             {
+                TransactionType = transactionType,
                 Amount = Amount,
                 TransactionDate = TransactionDate,
                 TransactionStatus = TransactionStatus,

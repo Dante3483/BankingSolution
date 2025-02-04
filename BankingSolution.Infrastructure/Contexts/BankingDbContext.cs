@@ -41,7 +41,6 @@ namespace BankingSolution.Infrastructure.Contexts
                     .WithMany()
                     .HasForeignKey(a => a.CustomerId)
                     .OnDelete(DeleteBehavior.Cascade);
-                account.Property(a => a.AccountNumber).HasMaxLength(50).IsRequired();
                 account.Property(a => a.CurrentBalance).IsRequired().HasColumnType("decimal(18,2)");
                 account.Property(a => a.DateOpened).IsRequired();
                 account.Property(a => a.DateClosed);

@@ -12,11 +12,11 @@ namespace BankingSolution.WebApi.AccountApi.Controllers
         private readonly ICustomerRepository _customerRepository;
 
         public AccountController(
-            IAccountRepository repository,
+            IAccountRepository accountRepository,
             ICustomerRepository customerRepository
         )
         {
-            _accountRepository = repository;
+            _accountRepository = accountRepository;
             _customerRepository = customerRepository;
         }
 
@@ -28,14 +28,12 @@ namespace BankingSolution.WebApi.AccountApi.Controllers
             return Ok(accounts);
         }
 
-        [HttpGet("{accountNumber}", Name = nameof(GetAccountByAccountNumberAsync))]
+        [HttpGet("{id}", Name = nameof(GetAccountByAccountNumberAsync))]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<Account>> GetAccountByAccountNumberAsync(
-            string accountNumber
-        )
+        public async Task<ActionResult<Account>> GetAccountByAccountNumberAsync(Guid id)
         {
-            var account = await _accountRepository.GetAccountByAccountNumberAsync(accountNumber);
+            var account = await _accountRepository.GetAccountByAccountNumberAsync(id);
             if (account is null)
             {
                 return NotFound();
@@ -65,12 +63,11 @@ namespace BankingSolution.WebApi.AccountApi.Controllers
             {
                 return BadRequest();
             }
-            var account = accountDTO.ToAccount();
-            account.CurrentBalance = initialBalance;
+            var account = accountDTO.ToAccount(initialBalance);
             await _accountRepository.AddAccountAsync(account);
             return CreatedAtRoute(
                 nameof(GetAccountByAccountNumberAsync),
-                new { accountNumber = account.AccountNumber },
+                new { id = account.Id },
                 account
             );
         }
@@ -80,7 +77,7 @@ namespace BankingSolution.WebApi.AccountApi.Controllers
         [ProducesResponseType(404)]
         public async Task<ActionResult> DeleteAccountAsync(Guid id)
         {
-            var accountToDelete = await _accountRepository.GetAccountByIdAsync(id);
+            var accountToDelete = await _accountRepository.GetAccountByAccountNumberAsync(id);
             if (accountToDelete is null)
             {
                 return NotFound();

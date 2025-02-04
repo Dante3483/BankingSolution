@@ -25,7 +25,7 @@ namespace BankingSolution.Infrastructure.Repositories
             var customer = await _dbContext.Customers.FindAsync(customerId);
             if (customer is null)
             {
-                return;
+                throw new InvalidOperationException("Customer not found");
             }
             _dbContext.Customers.Remove(customer);
             await _dbContext.SaveChangesAsync();

@@ -25,20 +25,13 @@ namespace BankingSolution.Infrastructure.Repositories
             var account = await _dbContext.Accounts.FindAsync(id);
             if (account is null)
             {
-                return;
+                throw new InvalidOperationException("Account not found");
             }
             _dbContext.Accounts.Remove(account);
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<Account?> GetAccountByAccountNumberAsync(string accountNumber)
-        {
-            return await _dbContext.Accounts.FirstOrDefaultAsync(a =>
-                a.AccountNumber == accountNumber
-            );
-        }
-
-        public async Task<Account?> GetAccountByIdAsync(Guid id)
+        public async Task<Account?> GetAccountByAccountNumberAsync(Guid id)
         {
             return await _dbContext.Accounts.FindAsync(id);
         }
@@ -46,6 +39,32 @@ namespace BankingSolution.Infrastructure.Repositories
         public async Task<IEnumerable<Account>> GetAllAccountsAsync()
         {
             return await _dbContext.Accounts.ToListAsync();
+        }
+
+        public async Task IncreaseAccountBalanceAsync(Guid id, decimal amount)
+        {
+            var account = await GetAccountByAccountNumberAsync(id);
+            if (account is null)
+            {
+                throw new InvalidOperationException("Account not found");
+            }
+            account.CurrentBalance += amount;
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task DecreaseAccountBalanceAsync(Guid id, decimal amount)
+        {
+            var account = await GetAccountByAccountNumberAsync(id);
+            if (account is null)
+            {
+                throw new InvalidOperationException("Account not found");
+            }
+            if (account.CurrentBalance < amount)
+            {
+                throw new InvalidOperationException("Insufficient funds");
+            }
+            account.CurrentBalance -= amount;
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

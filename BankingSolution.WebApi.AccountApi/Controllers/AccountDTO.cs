@@ -9,20 +9,16 @@ namespace BankingSolution.WebApi.AccountApi.Controllers
         public Guid CustomerId { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public string AccountNumber { get; set; } = string.Empty;
-
-        [Required]
         public DateTime DateOpened { get; set; } = DateTime.UtcNow;
 
         public DateTime? DateClosed { get; set; } = null;
 
-        public Account ToAccount()
+        public Account ToAccount(decimal initialBalance = 0m)
         {
             return new Account
             {
                 CustomerId = CustomerId,
-                AccountNumber = AccountNumber,
+                CurrentBalance = initialBalance,
                 DateOpened = DateOpened,
                 DateClosed = DateClosed,
             };
