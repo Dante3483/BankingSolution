@@ -15,7 +15,7 @@ namespace BankingSolution.WebApi.AccountApi.Controllers
         [Required]
         public DateTime DateOpened { get; set; } = DateTime.UtcNow;
 
-        public DateTime? DateClosed { get; set; }
+        public DateTime? DateClosed { get; set; } = null;
 
         public Account ToAccount()
         {

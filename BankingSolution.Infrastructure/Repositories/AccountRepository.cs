@@ -31,6 +31,13 @@ namespace BankingSolution.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
+        public async Task<Account?> GetAccountByAccountNumberAsync(string accountNumber)
+        {
+            return await _dbContext.Accounts.FirstOrDefaultAsync(a =>
+                a.AccountNumber == accountNumber
+            );
+        }
+
         public async Task<Account?> GetAccountByIdAsync(Guid id)
         {
             return await _dbContext.Accounts.FindAsync(id);
