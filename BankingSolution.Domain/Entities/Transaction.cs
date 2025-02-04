@@ -7,7 +7,7 @@ namespace BankingSolution.Domain.Entities
     public class Transaction
     {
         [Key]
-        private Guid _id;
+        private Guid _id = Guid.NewGuid();
 
         [Required]
         [EnumDataType(typeof(TransactionType))]

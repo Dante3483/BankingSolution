@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingSolution.Domain", "BankingSolution.Domain\BankingSolution.Domain.csproj", "{653E463A-CB0E-440E-B062-F7FCC2A6EE5B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingSolution.Infrastructure", "BankingSolution.Infrastructure\BankingSolution.Infrastructure.csproj", "{BE676810-C773-4D3D-95D2-22526DAE1F1B}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,5 +32,17 @@ Global
 		{653E463A-CB0E-440E-B062-F7FCC2A6EE5B}.Release|x64.Build.0 = Release|Any CPU
 		{653E463A-CB0E-440E-B062-F7FCC2A6EE5B}.Release|x86.ActiveCfg = Release|Any CPU
 		{653E463A-CB0E-440E-B062-F7FCC2A6EE5B}.Release|x86.Build.0 = Release|Any CPU
+		{BE676810-C773-4D3D-95D2-22526DAE1F1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE676810-C773-4D3D-95D2-22526DAE1F1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE676810-C773-4D3D-95D2-22526DAE1F1B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BE676810-C773-4D3D-95D2-22526DAE1F1B}.Debug|x64.Build.0 = Debug|Any CPU
+		{BE676810-C773-4D3D-95D2-22526DAE1F1B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BE676810-C773-4D3D-95D2-22526DAE1F1B}.Debug|x86.Build.0 = Debug|Any CPU
+		{BE676810-C773-4D3D-95D2-22526DAE1F1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE676810-C773-4D3D-95D2-22526DAE1F1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE676810-C773-4D3D-95D2-22526DAE1F1B}.Release|x64.ActiveCfg = Release|Any CPU
+		{BE676810-C773-4D3D-95D2-22526DAE1F1B}.Release|x64.Build.0 = Release|Any CPU
+		{BE676810-C773-4D3D-95D2-22526DAE1F1B}.Release|x86.ActiveCfg = Release|Any CPU
+		{BE676810-C773-4D3D-95D2-22526DAE1F1B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
