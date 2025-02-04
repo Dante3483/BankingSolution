@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BankingSolution.WebApi.AccountApi.Controllers
 {
+    /// <summary>
+    /// Provides API endpoints for managing accounts.
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class AccountController : ControllerBase
@@ -11,6 +14,11 @@ namespace BankingSolution.WebApi.AccountApi.Controllers
         private readonly IAccountRepository _accountRepository;
         private readonly ICustomerRepository _customerRepository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountController"/> class.
+        /// </summary>
+        /// <param name="accountRepository">The account repository.</param>
+        /// <param name="customerRepository">The customer repository.</param>
         public AccountController(
             IAccountRepository accountRepository,
             ICustomerRepository customerRepository
@@ -20,6 +28,10 @@ namespace BankingSolution.WebApi.AccountApi.Controllers
             _customerRepository = customerRepository;
         }
 
+        /// <summary>
+        /// Gets all accounts.
+        /// </summary>
+        /// <returns>A collection of all accounts.</returns>
         [HttpGet]
         [ProducesResponseType(200)]
         public async Task<ActionResult<IEnumerable<Account>>> GetAllAccountsAsync()
@@ -28,6 +40,11 @@ namespace BankingSolution.WebApi.AccountApi.Controllers
             return Ok(accounts);
         }
 
+        /// <summary>
+        /// Gets an account by its account number (id).
+        /// </summary>
+        /// <param name="id">The unique identifier of the account.</param>
+        /// <returns>The account with the specified account number.</returns>
         [HttpGet("{id}", Name = nameof(GetAccountByAccountNumberAsync))]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
@@ -47,6 +64,12 @@ namespace BankingSolution.WebApi.AccountApi.Controllers
             return Ok(account);
         }
 
+        /// <summary>
+        /// Adds a new account.
+        /// </summary>
+        /// <param name="initialBalance">The initial balance of the account.</param>
+        /// <param name="accountDTO">The account data transfer object.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         [HttpPost("{initialBalance}")]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
@@ -72,6 +95,11 @@ namespace BankingSolution.WebApi.AccountApi.Controllers
             );
         }
 
+        /// <summary>
+        /// Deletes an account by its id.
+        /// </summary>
+        /// <param name="id">The unique identifier of the account to delete.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         [HttpDelete]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]

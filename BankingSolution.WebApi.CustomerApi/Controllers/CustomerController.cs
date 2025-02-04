@@ -4,17 +4,28 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BankingSolution.WebApi.CustomerApi.Controllers
 {
+    /// <summary>
+    /// Provides API endpoints for managing customers.
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerRepository _repository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CustomerController"/> class.
+        /// </summary>
+        /// <param name="repository">The customer repository.</param>
         public CustomerController(ICustomerRepository repository)
         {
             _repository = repository;
         }
 
+        /// <summary>
+        /// Gets all customers.
+        /// </summary>
+        /// <returns>A collection of all customers.</returns>
         [HttpGet]
         [ProducesResponseType(200)]
         public async Task<ActionResult<IEnumerable<Customer>>> GetAllCustomersAsync()
@@ -23,6 +34,11 @@ namespace BankingSolution.WebApi.CustomerApi.Controllers
             return Ok(customers);
         }
 
+        /// <summary>
+        /// Gets a customer by its id.
+        /// </summary>
+        /// <param name="id">The unique identifier of the customer.</param>
+        /// <returns>The customer with the specified unique identifier.</returns>
         [HttpGet("{id}", Name = nameof(GetCustomerByIdAsync))]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
@@ -36,6 +52,11 @@ namespace BankingSolution.WebApi.CustomerApi.Controllers
             return Ok(customer);
         }
 
+        /// <summary>
+        /// Adds a new customer.
+        /// </summary>
+        /// <param name="customerDTO">The customer data transfer object.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
@@ -50,6 +71,11 @@ namespace BankingSolution.WebApi.CustomerApi.Controllers
             return CreatedAtRoute(nameof(GetCustomerByIdAsync), new { id = customer.Id }, customer);
         }
 
+        /// <summary>
+        /// Deletes a customer by  its id.
+        /// </summary>
+        /// <param name="id">The unique identifier of the customer to delete.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         [HttpDelete]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]

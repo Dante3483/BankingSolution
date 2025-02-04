@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BankingSolution.WebApi.TransactionApi.Controllers
 {
+    /// <summary>
+    /// Provides API endpoints for managing transactions.
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class TransactionController : ControllerBase
@@ -12,6 +15,11 @@ namespace BankingSolution.WebApi.TransactionApi.Controllers
         private readonly ITransactionRepository _transactionRepository;
         private readonly IAccountRepository _accountRepository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionController"/> class.
+        /// </summary>
+        /// <param name="transactionRepository">The transaction repository.</param>
+        /// <param name="accountRepository">The account repository.</param>
         public TransactionController(
             ITransactionRepository transactionRepository,
             IAccountRepository accountRepository
@@ -21,6 +29,10 @@ namespace BankingSolution.WebApi.TransactionApi.Controllers
             _accountRepository = accountRepository;
         }
 
+        /// <summary>
+        /// Gets all transactions.
+        /// </summary>
+        /// <returns>A collection of all transactions.</returns>
         [HttpGet]
         [ProducesResponseType(200)]
         public async Task<ActionResult<IEnumerable<Transaction>>> GetAllTransactionsAsync()
@@ -29,6 +41,11 @@ namespace BankingSolution.WebApi.TransactionApi.Controllers
             return Ok(transactions);
         }
 
+        /// <summary>
+        /// Gets a transaction by its id.
+        /// </summary>
+        /// <param name="id">The unique identifier of the transaction.</param>
+        /// <returns>The transaction with the specified id.</returns>
         [HttpGet("{id}", Name = nameof(GetTransactionByIdAsync))]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
@@ -42,7 +59,12 @@ namespace BankingSolution.WebApi.TransactionApi.Controllers
             return Ok(transaction);
         }
 
-        [HttpPost("Deposit")]
+        /// <summary>
+        /// Adds a new deposit transaction.
+        /// </summary>
+        /// <param name="transactionDTO">The transaction data transfer object.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        [HttpPost("deposit")]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         public async Task<ActionResult> AddDepositTransactionAsync(
@@ -66,7 +88,12 @@ namespace BankingSolution.WebApi.TransactionApi.Controllers
             );
         }
 
-        [HttpPost("Withdraw")]
+        /// <summary>
+        /// Adds a new withdrawal transaction.
+        /// </summary>
+        /// <param name="transactionDTO">The transaction data transfer object.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        [HttpPost("withdraw")]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         public async Task<ActionResult> AddWithdrawTransactionAsync(
@@ -90,7 +117,12 @@ namespace BankingSolution.WebApi.TransactionApi.Controllers
             );
         }
 
-        [HttpPost("Transfer")]
+        /// <summary>
+        /// Adds a new transfer transaction.
+        /// </summary>
+        /// <param name="transactionDTO">The transaction data transfer object.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        [HttpPost("transfer")]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         public async Task<ActionResult> AddTransferTransactionAsync(
@@ -122,6 +154,11 @@ namespace BankingSolution.WebApi.TransactionApi.Controllers
             );
         }
 
+        /// <summary>
+        /// Deletes a transaction by its id.
+        /// </summary>
+        /// <param name="id">The unique identifier of the transaction to delete.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         [HttpDelete]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
