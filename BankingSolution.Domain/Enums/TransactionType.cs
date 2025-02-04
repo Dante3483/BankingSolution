@@ -2,9 +2,9 @@ namespace BankingSolution.Domain.Enums
 {
     public enum TransactionType : byte
     {
-        None = 0,
-        Deposit = 1,
-        Withdrawal = 2,
-        Transfer = 3,
+        None = byte.MaxValue,
+        Deposit = 0,
+        Withdrawal = 1,
+        Transfer = 2,
     }
 }

@@ -1,4 +1,5 @@
 using BankingSolution.Domain.Entities;
+using BankingSolution.Domain.Enums;
 using BankingSolution.Domain.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -37,10 +38,10 @@ namespace BankingSolution.WebApi.TransactionApi.Controllers
             return Ok(transaction);
         }
 
-        [HttpPost]
+        [HttpPost("Deposit")]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult> AddTransactionAsync(
+        public async Task<ActionResult> AddDepositTransactionAsync(
             [FromBody] TransactionDTO transactionDTO
         )
         {
@@ -49,6 +50,53 @@ namespace BankingSolution.WebApi.TransactionApi.Controllers
                 return BadRequest();
             }
             var transaction = transactionDTO.ToTransaction();
+            transaction.TransactionType = TransactionType.Deposit;
+            await _repository.AddTransactionAsync(transaction);
+            return CreatedAtRoute(
+                nameof(GetTransactionByIdAsync),
+                new { id = transaction.Id },
+                transaction
+            );
+        }
+
+        [HttpPost("Withdraw")]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult> AddWithdrawTransactionAsync(
+            [FromBody] TransactionDTO transactionDTO
+        )
+        {
+            if (transactionDTO is null)
+            {
+                return BadRequest();
+            }
+            var transaction = transactionDTO.ToTransaction();
+            transaction.TransactionType = TransactionType.Withdrawal;
+            await _repository.AddTransactionAsync(transaction);
+            return CreatedAtRoute(
+                nameof(GetTransactionByIdAsync),
+                new { id = transaction.Id },
+                transaction
+            );
+        }
+
+        [HttpPost("Transfer")]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult> AddTransferTransactionAsync(
+            [FromBody] TransactionDTO transactionDTO
+        )
+        {
+            if (transactionDTO is null)
+            {
+                return BadRequest();
+            }
+            if (transactionDTO.DestinationAccountId is null)
+            {
+                return BadRequest();
+            }
+            var transaction = transactionDTO.ToTransaction();
+            transaction.TransactionType = TransactionType.Transfer;
             await _repository.AddTransactionAsync(transaction);
             return CreatedAtRoute(
                 nameof(GetTransactionByIdAsync),
