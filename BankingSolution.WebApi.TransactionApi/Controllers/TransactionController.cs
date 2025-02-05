@@ -106,10 +106,18 @@ namespace BankingSolution.WebApi.TransactionApi.Controllers
             }
             var transaction = transactionDTO.ToTransaction(TransactionType.Withdrawal);
             await _transactionRepository.AddTransactionAsync(transaction);
-            await _accountRepository.DecreaseAccountBalanceAsync(
-                transaction.AccountId,
-                transaction.Amount
-            );
+            try
+            {
+                await _accountRepository.DecreaseAccountBalanceAsync(
+                    transaction.AccountId,
+                    transaction.Amount
+                );
+            }
+            catch (InvalidOperationException)
+            {
+                return BadRequest();
+            }
+
             return CreatedAtRoute(
                 nameof(GetTransactionByIdAsync),
                 new { id = transaction.Id },
@@ -139,10 +147,17 @@ namespace BankingSolution.WebApi.TransactionApi.Controllers
             }
             var transaction = transactionDTO.ToTransaction(TransactionType.Transfer);
             await _transactionRepository.AddTransactionAsync(transaction);
-            await _accountRepository.DecreaseAccountBalanceAsync(
-                transaction.AccountId,
-                transaction.Amount
-            );
+            try
+            {
+                await _accountRepository.DecreaseAccountBalanceAsync(
+                    transaction.AccountId,
+                    transaction.Amount
+                );
+            }
+            catch (InvalidOperationException)
+            {
+                return BadRequest();
+            }
             await _accountRepository.IncreaseAccountBalanceAsync(
                 transaction.DestinationAccountId!.Value,
                 transaction.Amount

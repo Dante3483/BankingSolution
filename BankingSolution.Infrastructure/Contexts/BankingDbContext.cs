@@ -11,17 +11,17 @@ namespace BankingSolution.Infrastructure.Contexts
         /// <summary>
         /// Gets or sets the DbSet for accounts.
         /// </summary>
-        public DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
 
         /// <summary>
         /// Gets or sets the DbSet for customers.
         /// </summary>
-        public DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
 
         /// <summary>
         /// Gets or sets the DbSet for transactions.
         /// </summary>
-        public DbSet<Transaction> Transactions { get; set; }
+        public virtual DbSet<Transaction> Transactions { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BankingDbContext"/> class.

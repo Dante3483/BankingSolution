@@ -4,13 +4,15 @@
 
 ## **2. Technology Stack**
 
-| Technology                | Purpose                     |
-| ------------------------- | --------------------------- |
-| **ASP.NET Core**          | Backend framework           |
-| **Entity Framework Core** | ORM for database management |
-| **SQLite**                | Database                    |
-| **xUnit + Moq**           | Unit testing                |
-| **Swagger (Swashbuckle)** | API documentation           |
+| Technology                | Purpose                                        |
+| ------------------------- | ---------------------------------------------- |
+| **ASP.NET Core**          | Backend framework                              |
+| **Entity Framework Core** | ORM for database management                    |
+| **SQLite**                | Database                                       |
+| **xUnit**                 | Unit testing                                   |
+| **Moq**                   | Mock dependencies                              |
+| **Fluent Assertions**     | Make more readable and maintainable assertions |
+| **Swagger (Swashbuckle)** | API documentation                              |
 
 ## **3. Architecture Overview**
 
@@ -96,3 +98,4 @@ dotnet test
 
 - **xUnit** for unit tests
 - **Moq** for mocking dependencies
+- **Fluent Assertions** for more readable and maintainable assertions

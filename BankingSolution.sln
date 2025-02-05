@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingSolution.WebApi.Acco
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingSolution.WebApi.TransactionApi", "BankingSolution.WebApi.TransactionApi\BankingSolution.WebApi.TransactionApi.csproj", "{587529FB-95B1-4830-A6AF-371689012EF0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingSolution.Tests", "BankingSolution.Tests\BankingSolution.Tests.csproj", "{B5AD83FC-3CF9-4359-B0D9-549381273156}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,5 +88,17 @@ Global
 		{587529FB-95B1-4830-A6AF-371689012EF0}.Release|x64.Build.0 = Release|Any CPU
 		{587529FB-95B1-4830-A6AF-371689012EF0}.Release|x86.ActiveCfg = Release|Any CPU
 		{587529FB-95B1-4830-A6AF-371689012EF0}.Release|x86.Build.0 = Release|Any CPU
+		{B5AD83FC-3CF9-4359-B0D9-549381273156}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5AD83FC-3CF9-4359-B0D9-549381273156}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5AD83FC-3CF9-4359-B0D9-549381273156}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B5AD83FC-3CF9-4359-B0D9-549381273156}.Debug|x64.Build.0 = Debug|Any CPU
+		{B5AD83FC-3CF9-4359-B0D9-549381273156}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B5AD83FC-3CF9-4359-B0D9-549381273156}.Debug|x86.Build.0 = Debug|Any CPU
+		{B5AD83FC-3CF9-4359-B0D9-549381273156}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5AD83FC-3CF9-4359-B0D9-549381273156}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5AD83FC-3CF9-4359-B0D9-549381273156}.Release|x64.ActiveCfg = Release|Any CPU
+		{B5AD83FC-3CF9-4359-B0D9-549381273156}.Release|x64.Build.0 = Release|Any CPU
+		{B5AD83FC-3CF9-4359-B0D9-549381273156}.Release|x86.ActiveCfg = Release|Any CPU
+		{B5AD83FC-3CF9-4359-B0D9-549381273156}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

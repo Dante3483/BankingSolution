@@ -28,7 +28,7 @@ namespace BankingSolution.Infrastructure.Repositories
         /// <returns>A task that represents the asynchronous operation.</returns>
         public async Task AddTransactionAsync(Transaction transaction)
         {
-            await _dbContext.AddAsync(transaction);
+            await _dbContext.Transactions.AddAsync(transaction);
             await _dbContext.SaveChangesAsync();
         }
 
