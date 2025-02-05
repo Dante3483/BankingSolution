@@ -47,7 +47,7 @@ namespace BankingSolution.WebApi.CustomerApi.Controllers
             var customer = await _repository.GetCustomerByIdAsync(id);
             if (customer is null)
             {
-                return NotFound();
+                return NotFound("Customer not found.");
             }
             return Ok(customer);
         }
@@ -64,7 +64,7 @@ namespace BankingSolution.WebApi.CustomerApi.Controllers
         {
             if (customerDTO is null)
             {
-                return BadRequest();
+                return BadRequest("Customer data is null.");
             }
             var customer = customerDTO.ToCustomer();
             await _repository.AddCustomerAsync(customer);
@@ -84,7 +84,7 @@ namespace BankingSolution.WebApi.CustomerApi.Controllers
             var customerToDelete = await _repository.GetCustomerByIdAsync(id);
             if (customerToDelete is null)
             {
-                return NotFound();
+                return NotFound("Customer not found.");
             }
             await _repository.DeleteCustomerAsync(id);
             return NoContent();

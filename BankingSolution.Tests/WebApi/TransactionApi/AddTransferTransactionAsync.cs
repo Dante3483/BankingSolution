@@ -62,7 +62,7 @@ namespace BankingSolution.Tests.WebApi.TransactionApi
         {
             var result = await _moqSetup.TransactionController.AddTransferTransactionAsync(null);
 
-            result.Should().BeOfType<BadRequestResult>();
+            result.Should().BeOfType<BadRequestObjectResult>();
         }
 
         [Fact]
@@ -75,7 +75,7 @@ namespace BankingSolution.Tests.WebApi.TransactionApi
                 transactionDTO
             );
 
-            result.Should().BeOfType<BadRequestResult>();
+            result.Should().BeOfType<BadRequestObjectResult>();
         }
 
         [Fact]
@@ -94,7 +94,7 @@ namespace BankingSolution.Tests.WebApi.TransactionApi
                 transactionDTO
             );
 
-            result.Should().BeOfType<BadRequestResult>();
+            result.Should().BeOfType<BadRequestObjectResult>();
         }
 
         [Fact]

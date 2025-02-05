@@ -42,7 +42,7 @@ namespace BankingSolution.Tests.WebApi.CustomerApi
 
             var result = await _moqSetup.CustomerController.GetCustomerByIdAsync(customer.Id);
 
-            result.Result.Should().BeOfType<NotFoundResult>();
+            result.Result.Should().BeOfType<NotFoundObjectResult>();
         }
     }
 }

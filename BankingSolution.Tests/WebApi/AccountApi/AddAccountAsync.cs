@@ -55,7 +55,7 @@ namespace BankingSolution.Tests.WebApi.AccountApi
                 accountDTO
             );
 
-            result.Should().BeOfType<BadRequestResult>();
+            result.Should().BeOfType<BadRequestObjectResult>();
         }
 
         [Fact]
@@ -65,7 +65,7 @@ namespace BankingSolution.Tests.WebApi.AccountApi
 
             var result = await _moqSetup.AccountController.AddAccountAsync(initialBalance, null);
 
-            result.Should().BeOfType<BadRequestResult>();
+            result.Should().BeOfType<BadRequestObjectResult>();
         }
     }
 }

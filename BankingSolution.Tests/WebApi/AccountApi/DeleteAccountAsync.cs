@@ -31,7 +31,7 @@ namespace BankingSolution.Tests.WebApi.AccountApi
 
             var result = await _moqSetup.AccountController.DeleteAccountAsync(account.Id);
 
-            result.Should().BeOfType<NotFoundResult>();
+            result.Should().BeOfType<NotFoundObjectResult>();
         }
     }
 }

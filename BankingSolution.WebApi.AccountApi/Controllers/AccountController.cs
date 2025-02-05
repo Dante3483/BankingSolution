@@ -53,12 +53,12 @@ namespace BankingSolution.WebApi.AccountApi.Controllers
             var account = await _accountRepository.GetAccountByAccountNumberAsync(id);
             if (account is null)
             {
-                return NotFound();
+                return NotFound("Account not found.");
             }
             var customer = await _customerRepository.GetCustomerByIdAsync(account.CustomerId);
             if (customer is null)
             {
-                return NotFound();
+                return NotFound("Customer not found.");
             }
             account.Customer = customer;
             return Ok(account);
@@ -80,11 +80,11 @@ namespace BankingSolution.WebApi.AccountApi.Controllers
         {
             if (initialBalance < 0 || initialBalance > decimal.MaxValue)
             {
-                return BadRequest();
+                return BadRequest("Initial balance is invalid.");
             }
             if (accountDTO is null)
             {
-                return BadRequest();
+                return BadRequest("Account data is null.");
             }
             var account = accountDTO.ToAccount(initialBalance);
             await _accountRepository.AddAccountAsync(account);
@@ -108,7 +108,7 @@ namespace BankingSolution.WebApi.AccountApi.Controllers
             var accountToDelete = await _accountRepository.GetAccountByAccountNumberAsync(id);
             if (accountToDelete is null)
             {
-                return NotFound();
+                return NotFound("Account not found.");
             }
             await _accountRepository.DeleteAccountAsync(id);
             return NoContent();

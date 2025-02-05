@@ -51,7 +51,7 @@ namespace BankingSolution.Tests.WebApi.AccountApi
                 account.Id
             );
 
-            result.Result.Should().BeOfType<NotFoundResult>();
+            result.Result.Should().BeOfType<NotFoundObjectResult>();
         }
 
         [Fact]
@@ -64,7 +64,7 @@ namespace BankingSolution.Tests.WebApi.AccountApi
                 account.Id
             );
 
-            result.Result.Should().BeOfType<NotFoundResult>();
+            result.Result.Should().BeOfType<NotFoundObjectResult>();
         }
     }
 }

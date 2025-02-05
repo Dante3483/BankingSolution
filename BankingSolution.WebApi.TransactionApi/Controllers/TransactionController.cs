@@ -54,7 +54,7 @@ namespace BankingSolution.WebApi.TransactionApi.Controllers
             var transaction = await _transactionRepository.GetTransactionByIdAsync(id);
             if (transaction is null)
             {
-                return NotFound();
+                return NotFound("Transaction not found.");
             }
             return Ok(transaction);
         }
@@ -73,7 +73,7 @@ namespace BankingSolution.WebApi.TransactionApi.Controllers
         {
             if (transactionDTO is null)
             {
-                return BadRequest();
+                return BadRequest("Transaction data is null.");
             }
             var transaction = transactionDTO.ToTransaction(TransactionType.Deposit);
             await _transactionRepository.AddTransactionAsync(transaction);
@@ -102,7 +102,7 @@ namespace BankingSolution.WebApi.TransactionApi.Controllers
         {
             if (transactionDTO is null)
             {
-                return BadRequest();
+                return BadRequest("Transaction data is null.");
             }
             var transaction = transactionDTO.ToTransaction(TransactionType.Withdrawal);
             await _transactionRepository.AddTransactionAsync(transaction);
@@ -115,7 +115,7 @@ namespace BankingSolution.WebApi.TransactionApi.Controllers
             }
             catch (InvalidOperationException)
             {
-                return BadRequest();
+                return BadRequest("Insufficient funds for withdrawal.");
             }
 
             return CreatedAtRoute(
@@ -139,11 +139,11 @@ namespace BankingSolution.WebApi.TransactionApi.Controllers
         {
             if (transactionDTO is null)
             {
-                return BadRequest();
+                return BadRequest("Transaction data is null.");
             }
             if (transactionDTO.DestinationAccountId is null)
             {
-                return BadRequest();
+                return BadRequest("Destination account ID is required for transfer transactions.");
             }
             var transaction = transactionDTO.ToTransaction(TransactionType.Transfer);
             await _transactionRepository.AddTransactionAsync(transaction);
@@ -156,7 +156,7 @@ namespace BankingSolution.WebApi.TransactionApi.Controllers
             }
             catch (InvalidOperationException)
             {
-                return BadRequest();
+                return BadRequest("Insufficient funds for transfer.");
             }
             await _accountRepository.IncreaseAccountBalanceAsync(
                 transaction.DestinationAccountId!.Value,
@@ -182,7 +182,7 @@ namespace BankingSolution.WebApi.TransactionApi.Controllers
             var transactionToDelete = await _transactionRepository.GetTransactionByIdAsync(id);
             if (transactionToDelete is null)
             {
-                return NotFound();
+                return NotFound("Transaction not found.");
             }
             await _transactionRepository.DeleteTransactionAsync(id);
             return NoContent();

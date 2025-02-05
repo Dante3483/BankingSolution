@@ -35,7 +35,7 @@ namespace BankingSolution.Tests.WebApi.TransactionApi
                 transaction.Id
             );
 
-            result.Should().BeOfType<NotFoundResult>();
+            result.Should().BeOfType<NotFoundObjectResult>();
         }
     }
 }

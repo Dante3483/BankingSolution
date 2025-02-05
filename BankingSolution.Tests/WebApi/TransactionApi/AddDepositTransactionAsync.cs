@@ -52,7 +52,7 @@ namespace BankingSolution.Tests.WebApi.TransactionApi
         {
             var result = await _moqSetup.TransactionController.AddDepositTransactionAsync(null);
 
-            result.Should().BeOfType<BadRequestResult>();
+            result.Should().BeOfType<BadRequestObjectResult>();
         }
 
         [Fact]

@@ -31,7 +31,7 @@ namespace BankingSolution.Tests.WebApi.CustomerApi
 
             var result = await _moqSetup.CustomerController.DeleteCustomerAsync(customer.Id);
 
-            result.Should().BeOfType<NotFoundResult>();
+            result.Should().BeOfType<NotFoundObjectResult>();
         }
     }
 }
