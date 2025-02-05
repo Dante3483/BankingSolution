@@ -23,6 +23,7 @@ The project follows **Clean Architecture**, separating concerns into different l
 - **Customer API (`BankingSolution.WebApi.CustomerApi`)** – Provides endpoints for managing customer data, including retrieving, adding, and deleting customers.
 - **Account API (`BankingSolution.WebApi.AccountApi`)** – Provides endpoints for managing account data, including retrieving, adding, and deleting accounts.
 - **Transaction API (`BankingSolution.WebApi.TransactionApi`)** – Provides endpoints for managing transactions, including retrieving, adding deposit, withdrawal, and transfer transactions, and deleting transactions.
+- **Unit Tests (`BankingSolution.Tests`)** - This layer contains automated tests that verify the functionality of individual components within the BankingSolution project. The target is to ensure that each unit of code performs as expected and to catch any regressions or bugs early in the development process.
 
 ## **4. API Endpoints**
 
